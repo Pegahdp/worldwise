@@ -14,8 +14,7 @@ import CityList from "./components/CityList";
 import CountryList from "./components/CountryList";
 import City from "./components/City";
 import Form from "./components/Form";
-import { CityProvider } from "./components/CitiesContext";
-
+import { CityProvider } from "./contexts/CitiesContext";
 
 const App = () => {
   return (

@@ -1,10 +1,4 @@
-import {
-  createContext,
-  children,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const CitiesContext = createContext();
 
@@ -34,11 +28,8 @@ const CityProvider = ({ children }) => {
       setIsLoading(true);
       const res = await fetch(`http://localhost:9000/cities/${id}`);
       const data = await res.json();
-      console.log("Fetching city with ID:", id);
-      console.log("dd", data);
 
       setCurrentCity(data);
-      console.log("dataaaa", data);
     } catch (err) {
       console.log("An Error Has Occurd ");
     } finally {
