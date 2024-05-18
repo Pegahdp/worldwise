@@ -34,7 +34,6 @@ export default function Map() {
       setMapPosition([geologicalPosition.lat, geologicalPosition.lng]);
   }, [geologicalPosition]);
 
-  console.log("mapPosition", mapPosition);
   return (
     <div className={styles.mapContainer}>
       {!geologicalPosition && (

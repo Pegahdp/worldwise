@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const CitiesContext = createContext();
 
+const BASE_URL = "http://localhost:9000";
 const CityProvider = ({ children }) => {
   const [cities, setCities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -11,7 +12,7 @@ const CityProvider = ({ children }) => {
     async function fetchCities() {
       try {
         setIsLoading(true);
-        const res = await fetch("http://localhost:9000/cities");
+        const res = await fetch(`${BASE_URL}/cities`);
         const data = await res.json();
         setCities(data);
       } catch (err) {
@@ -26,9 +27,8 @@ const CityProvider = ({ children }) => {
   async function getCity(id) {
     try {
       setIsLoading(true);
-      const res = await fetch(`http://localhost:9000/cities/${id}`);
+      const res = await fetch(`${BASE_URL}/cities/${id}`);
       const data = await res.json();
-
       setCurrentCity(data);
     } catch (err) {
       console.log("An Error Has Occurd ");
@@ -37,6 +37,25 @@ const CityProvider = ({ children }) => {
     }
   }
 
+  async function createCity(newCity) {
+    try {
+      setIsLoading(true);
+      const res = await fetch(`${BASE_URL}/cities/`, {
+        method: "POST",
+        body: JSON.stringify(newCity),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+
+      setCities((cities) => [...cities, data]);
+    } catch (err) {
+      console.log("An Error Has Occurd ");
+    } finally {
+      setIsLoading(false);
+    }
+  }
   return (
     <CitiesContext.Provider
       value={{
@@ -44,6 +63,7 @@ const CityProvider = ({ children }) => {
         isLoading,
         currentCity,
         getCity,
+        createCity,
       }}
     >
       {children}
