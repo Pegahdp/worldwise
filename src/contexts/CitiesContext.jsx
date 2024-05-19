@@ -31,7 +31,7 @@ const CityProvider = ({ children }) => {
       const data = await res.json();
       setCurrentCity(data);
     } catch (err) {
-      console.log("An Error Has Occurd ");
+      console.log("An Error Has Occurd While Adding the City");
     } finally {
       setIsLoading(false);
     }
@@ -56,6 +56,21 @@ const CityProvider = ({ children }) => {
       setIsLoading(false);
     }
   }
+
+  async function deleteCity(id) {
+    try {
+      setIsLoading(true);
+      await fetch(`${BASE_URL}/cities/${id}`, {
+        method: "DELETE",
+      });
+
+      setCities((cities) => cities.filter((city) => city.id !== id));
+    } catch (err) {
+      console.log("An Error Has Occurd While Deleting the City");
+    } finally {
+      setIsLoading(false);
+    }
+  }
   return (
     <CitiesContext.Provider
       value={{
@@ -64,6 +79,7 @@ const CityProvider = ({ children }) => {
         currentCity,
         getCity,
         createCity,
+        deleteCity,
       }}
     >
       {children}
