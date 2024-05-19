@@ -25,18 +25,6 @@
       "id": "17806751"
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
-      "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": "98443197"
-    },
-    {
       "id": "5401",
       "cityName": "Sydney",
       "country": "Australia",
@@ -46,6 +34,18 @@
       "position": {
         "lat": "-33.57169886407876",
         "lng": "151.21011082565167"
+      }
+    },
+    {
+      "id": "4ed5",
+      "cityName": "El Hamma",
+      "country": "Tunisia",
+      "emoji": "🇹🇳",
+      "date": "2024-05-19T03:22:06.119Z",
+      "notes": "",
+      "position": {
+        "lat": "33.779277622200716",
+        "lng": "9.6766245687729"
       }
     }
   ]
