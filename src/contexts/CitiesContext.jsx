@@ -36,6 +36,7 @@ const reducer = (state, action) => {
         ...state,
         isLoading: false,
         cities: [...state.cities, action.payload],
+        currentCity: action.payload,
       };
 
     case "city/deleted":
@@ -53,7 +54,7 @@ const reducer = (state, action) => {
 
 const BASE_URL = "http://localhost:9000";
 const CityProvider = ({ children }) => {
-  const [{ cities, isLoading, currentCity }, dispatch] = useReducer(
+  const [{ cities, isLoading, currentCity, error }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -76,6 +77,7 @@ const CityProvider = ({ children }) => {
   }, []);
 
   async function getCity(id) {
+    if (Number(id) === currentCity.id) return;
     dispatch({ type: "loading" });
 
     try {
@@ -134,6 +136,7 @@ const CityProvider = ({ children }) => {
         cities,
         isLoading,
         currentCity,
+        error,
         getCity,
         createCity,
         deleteCity,
